@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Usuarios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <p class="eyebrow">Express + MongoDB</p>
+      <h1>Usuarios</h1>
+      <p class="subtitle">Crie, liste, atualize e remova usuarios pela API local.</p>
+    </header>
+
+    <section class="metrics-grid">
+      <article class="card metric">
+        <p>Total</p>
+        <strong id="totalUsers">0</strong>
+      </article>
+      <article class="card metric">
+        <p>Exibidos</p>
+        <strong id="visibleUsers">0</strong>
+      </article>
+      <article class="card metric">
+        <p>Com filtro</p>
+        <strong id="filteredUsers">0</strong>
+      </article>
+    </section>
+
+    <section class="grid-2">
+      <section class="card form-card">
+        <h2>Novo usuário</h2>
+        <form id="createForm">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" type="text" placeholder="Digite um nome" required />
+          <button type="submit">Criar</button>
+        </form>
+      </section>
+
+      <section class="card filters-card">
+        <h2>Filtros</h2>
+        <div class="filters-grid">
+          <div>
+            <label for="searchInput">Busca por nome</label>
+            <input id="searchInput" type="text" placeholder="Ex.: Ana" />
+          </div>
+          <div>
+            <label for="initialFilter">Inicial</label>
+            <select id="initialFilter">
+              <option value="">Todas</option>
+            </select>
+          </div>
+          <div>
+            <label for="sortFilter">Ordenção</label>
+            <select id="sortFilter">
+              <option value="name-asc">Nome (A-Z)</option>
+              <option value="name-desc">Nome (Z-A)</option>
+              <option value="id-desc">Mais recentes</option>
+              <option value="id-asc">Mais antigos</option>
+            </select>
+          </div>
+          <button id="clearFiltersBtn" class="ghost" type="button">Limpar filtros</button>
+        </div>
+      </section>
+    </section>
+
+    <section class="card list-card">
+      <div class="list-head">
+        <h2>Lista</h2>
+        <button id="refreshBtn" class="ghost">Atualizar</button>
+      </div>
+      <ul id="usersList"></ul>
+    </section>
+
+    <p id="status" class="status"></p>
+  </main>
+
+  <template id="userItemTemplate">
+    <li class="user-item">
+      <div class="user-info">
+        <strong class="user-name"></strong>
+        <small class="user-id"></small>
+      </div>
+      <div class="actions">
+        <button class="ghost edit-btn">Editar</button>
+        <button class="danger delete-btn">Excluir</button>
+      </div>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
